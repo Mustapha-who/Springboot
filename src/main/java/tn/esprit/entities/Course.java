@@ -1,25 +1,37 @@
 package tn.esprit.entities;
 
 import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
+@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Table(name="Course")
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCourse;
-
-    private String emplacement;
-    private LocalDate dateCourse;
+     Long idCourse;
+     String emplacement;
+     LocalDate dateCourse;
 
     @ManyToOne
     @JoinColumn(name="championnat_id")
-    private Championnat championnat;
+     Championnat championnat;
 
     @OneToMany(mappedBy="course")
-    private List<Position> positions;
+     List<Position> positions;
+
+
 }

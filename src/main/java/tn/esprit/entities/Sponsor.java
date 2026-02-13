@@ -1,10 +1,19 @@
 package tn.esprit.entities;
 
 import jakarta.persistence.*;
+import lombok.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
+
+
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+
 @Table(name="Sponsor")
 public class Sponsor {
     @Id
@@ -18,4 +27,10 @@ public class Sponsor {
 
     @OneToMany(mappedBy="sponsor")
     private List<Contrat> contrats;
+
+
+
+    Boolean archived;
+    LocalDate dateCreation;
+    LocalDate dateDerniereModification;
 }
