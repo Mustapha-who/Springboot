@@ -1,24 +1,37 @@
 package tn.esprit.entities;
 
 import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="Pilote")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Pilote {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPilote;
 
-    private String libelleP;
+    private String libellep;
     private Integer nbPointsTotal;
     private Integer classementGeneral;
 
-    @ManyToOne
-    @JoinColumn(name="equipe_id")
+    @Enumerated(EnumType.STRING)
+    private Categorie categorie;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "equipe_id")
     private Equipe equipe;
 
-    @OneToMany(mappedBy="pilote")
-    private List<Position> positions;
+    // Inverse side of 1:* with Position
+    @OneToMany(mappedBy = "pilote")
+    private List<Position> positions = new ArrayList<>();
+
 }

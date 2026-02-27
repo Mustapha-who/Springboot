@@ -2,15 +2,32 @@ package tn.esprit.entities;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
-@Table(name="DetailChampionnat")
 public class DetailChampionnat {
+
     @Id
-    private String code; // PK
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String code;
     private String description;
 
-    @OneToMany(mappedBy="categorie")
-    private List<Championnat> championnats;
+    // Inverse side of 1:1
+    @OneToOne(mappedBy = "detail")
+    private Championnat championnat;
+
+    public DetailChampionnat() {
+    }
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getCode() { return code; }
+    public void setCode(String code) { this.code = code; }
+
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+
+    public Championnat getChampionnat() { return championnat; }
+    public void setChampionnat(Championnat championnat) { this.championnat = championnat; }
 }

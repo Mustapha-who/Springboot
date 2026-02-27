@@ -1,14 +1,22 @@
 package tn.esprit.Services;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import tn.esprit.Repository.PiloteRepository;
 import tn.esprit.entities.Pilote;
 
-public class PiloteService {
 
+@Service
+@RequiredArgsConstructor
+public class PiloteService implements IPiloteService {
 
-    PiloteRepository pi;
+   final PiloteRepository piloteRepository;
 
-    public Pilote ajouterPilote(Pilote pilote){
-        return pi.save(pilote);
+    @Override
+    public String ajouterPilote(Pilote pilote) {
+        pilote.setClassementGeneral(0);
+        pilote.setNbPointsTotal(0);
+        piloteRepository.save(pilote);
+        return "Pilote ajouté avec succès";
     }
 }

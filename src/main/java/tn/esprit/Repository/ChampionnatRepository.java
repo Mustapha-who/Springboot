@@ -2,8 +2,9 @@ package tn.esprit.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import tn.esprit.entities.Pilote;
+import tn.esprit.entities.Championnat;
 
 @Repository
-public interface PiloteRepository extends JpaRepository<Pilote, Long> {
+public interface ChampionnatRepository extends JpaRepository<Championnat,Long> {
+
 }
