@@ -19,13 +19,13 @@ public class Contrat {
     private String annee;
     private Boolean archived;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "equipe_id")
-    @JsonIgnore   // ← évite la boucle infinie JSON
+    @JsonIgnore
     private Equipe equipe;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "sponsor_id")
-    @JsonIgnore   // ← évite la boucle infinie JSON
+    @JsonIgnore
     private Sponsor sponsor;
 }
